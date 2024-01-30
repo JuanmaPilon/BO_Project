@@ -1,12 +1,32 @@
 <template>
   <div>
     <header>
-      <div class="pinkBox"></div>
+      <div v-bind:class="{ 'hidden': isMobile }" class="pinkBox"></div>
     </header>
     <slot />
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      isMobile: false
+    }
+  },
+  mounted() {
+    this.checkIfMobile();
+    window.addEventListener('resize', this.checkIfMobile);
+  },
+  beforeDestroy(){
+    window.removeEventListener('resize', this.checkIfMobile);
+  },
+  methods: {
+    checkIfMobile() {
+      this.isMobile = window.innerWidth <= 700;
+    }
+  }
+}
+</script>
 
-<style lang="scss" scoped></style>
+<style></style>

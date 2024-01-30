@@ -1,12 +1,7 @@
 <template>
   <div>
-    <header>
-      <div>
-        <h1 class="font-extrabold text-5xl text-center">Welcome!</h1>
-      </div>
-    </header>
-
-    <main class="container mx-auto my-8 flex items-center justify-content">
+    <main class="container mx-auto flex items-center justify-center -my-10">
+      <h1 class="font-extrabold text-5xl text-center mb-12">Welcome!</h1>
       <div class="w-full max-w-md">
         <form action="#">
           <div class="mb-4">
