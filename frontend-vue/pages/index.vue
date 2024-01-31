@@ -12,9 +12,9 @@
             <label for="#" class="inputText">Password</label>
             <input type="text" id="password" name="password" class="inputBox" placeholder="**********"/>
           </div>
-          <button type="submit" class="btn">LOGIN</button>
         </form>
       </div>
+      <button type="submit" class="btn">LOGIN</button>
     </main>
   </div>
 </template>
