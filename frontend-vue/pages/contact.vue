@@ -1,7 +1,7 @@
 <template>
   <div>
     <header class="text-left ml-4 mt-4">
-      <h2 class="p-5 text-3xl font-semibold">Contacts</h2>
+      <h2 class="p-5 text-3xl font-black">Contacts</h2>
       <div class="p-3 ml-2 mb-4 relative justify-center">
         <div class="relative flex items-center">
           <input
@@ -17,13 +17,16 @@
       </div>
     </header>
 
-    <main class="container">
+    <main class="flex flex-col items-center justify-top h-screen">
       <div v-if="contacts.length === 0" class="text-center">
+        <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-96" />
+        <p class="text-2xl font-semibold font-roboto">Add new contacts to your database</p>
       </div>
       <div class="flex justify-center">
+        
         <button class="btn mt-4 hidden sm:block" @click="addNewContact">Add new contacts</button>
-        <button class="btn-smol mt-4 sm:hidden" @click="addNewContact">+</button>
       </div>
+      <button class="btn-smol sm:hidden" @click="addNewContact">+</button>
     </main>
   </div>
 </template>

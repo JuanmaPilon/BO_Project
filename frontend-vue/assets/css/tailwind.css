@@ -20,12 +20,12 @@ body {
         @apply block text-black text-xl font-bold mb-2;
     }
     .btn {
-        @apply font-roboto ml-20 font-semibold text-xl bg-violet-400 text-white px-28 py-4 rounded-full mt-10;
+        @apply font-roboto font-semibold text-xl bg-violet-400 text-white px-28 py-4 rounded-full mt-10;
     }
     .container {
         @apply flex flex-col items-center justify-center h-screen;
     }
     .btn-smol {
-        @apply font-roboto font-semibold text-sm bg-violet-400 text-white py-2 rounded-full;
+        @apply font-roboto font-semibold bg-violet-400 text-white py-1 rounded-full text-8xl p-6 m-5 ml-auto;
     }
 }
