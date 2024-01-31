@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      sans: ['Roboto', 'sans-serif'],
+      bitter: ['Bitter', 'serif',],
+      roboto: ['Roboto', 'sans-serif'],
     }
   },
   plugins: [],

@@ -5,14 +5,14 @@
       <div class="w-full max-w-md">
         <form action="#">
           <div class="mb-4">
-            <label for="#" class="inputText">User</label>
+            <label for="#" class="inputText">Add</label>
             <input type="text" id="username" name="username" class="inputBox" placeholder="john@doe.com"/>
           </div>
           <div>
             <label for="#" class="inputText">Password</label>
             <input type="text" id="password" name="password" class="inputBox" placeholder="**********"/>
           </div>
-          <button type="submit" class="btn">Login</button>
+          <button type="submit" class="btn">LOGIN</button>
         </form>
       </div>
     </main>
