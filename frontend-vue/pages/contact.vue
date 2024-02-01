@@ -21,11 +21,13 @@
       <div v-if="contacts.length === 0" class="text-center">
         <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-96" /> <!-- could not resolve the issue with config of nuxtimg-->
         <p class="text-2xl font-semibold font-roboto">Add new contacts to your database</p>
-        <button class="btn mt-4 hidden sm:block" @click="addNewContact">Add new contacts</button>
       </div>
-      <div v-else class="flex flex-wrap justify-center">
-        <contactCard v-for="contact in contacts" :key="contact.id" :contact="contact"/>
+      <div v-else class="flex flex-wrap">
+        <div class=" justify-center lg:w-1/3 mx-auto px-16" v-for="contact in contacts" :key="contact.id">
+          <contactCard :contact="contact"/>
       </div>
+    </div>
+    <button class="btn mt-4 hidden sm:block" @click="addNewContact">Add new contacts</button>
       <button class="btn-smol sm:hidden" @click="addNewContact">+</button>
     </main>
   </div>
@@ -46,8 +48,15 @@ export default {
   },
   mounted() {
     this.contacts = [
-      {id: 1, name: 'Sujeto de proba 1' , email: 'aquilesvengo@bo.com', img: 'soyunaimagenjeje'},
-      {id: 2, name: 'Sujeto de proba 2' , email: 'jackpot@bo.com', img: 'otraimg'},
+      {id: 1, name: 'Sujeto de proba 1' , description: 'CEO'},
+      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
+      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
+      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
+      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
+      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
+      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
+      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
+      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
     ]
   }
 };
