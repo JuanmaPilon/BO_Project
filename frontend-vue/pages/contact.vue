@@ -19,12 +19,12 @@
 
     <main class="flex flex-col items-center justify-top h-screen">
       <div v-if="contacts.length === 0" class="text-center">
-        <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-96" />
+        <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-96" /> <!-- could not resolve the issue with config of nuxtimg-->
         <p class="text-2xl font-semibold font-roboto">Add new contacts to your database</p>
-      </div>
-      <div class="flex justify-center">
-        
         <button class="btn mt-4 hidden sm:block" @click="addNewContact">Add new contacts</button>
+      </div>
+      <div v-else class="flex flex-wrap justify-center">
+        <contactCard v-for="contact in contacts" :key="contact.id" :contact="contact"/>
       </div>
       <button class="btn-smol sm:hidden" @click="addNewContact">+</button>
     </main>
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import  contactCard  from '#components'
+
 export default {
   data() {
     return {
@@ -42,6 +44,12 @@ export default {
   methods: {
     addNewContact() {},
   },
+  mounted() {
+    this.contacts = [
+      {id: 1, name: 'Sujeto de proba 1' , email: 'aquilesvengo@bo.com', img: 'soyunaimagenjeje'},
+      {id: 2, name: 'Sujeto de proba 2' , email: 'jackpot@bo.com', img: 'otraimg'},
+    ]
+  }
 };
 </script>
 
