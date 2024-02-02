@@ -58,7 +58,7 @@ export default {
       {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
       {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
     ]
-  }
+  },
 };
 </script>
 
