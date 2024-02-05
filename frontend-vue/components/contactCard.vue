@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink to="contactProfile.vue">
+    <NuxtLink to="contactProfile">
     <div class="contactCard bg-white rounded-lg p-4 flex items-center shadow mb-4">
         <img src="../static/emptyContact.png" :alt="contactName" class="contactImage w-16 h-16 rounded-full mr-4" />
         <div class="contactInfo flex-grow">
