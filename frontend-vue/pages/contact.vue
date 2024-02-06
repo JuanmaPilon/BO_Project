@@ -27,7 +27,9 @@
           <contactCard :contact="contact"/>
       </div>
     </div>
-    <button class="btn mt-4 hidden sm:block" @click="addNewContact">Add new contacts</button>
+    <button class="btn mt-4 hidden sm:block" @click="showModal = true">Add new contacts</button>
+    <contactModal v-show="showModal" @close-modal="showModal = false"/>
+    
       <button class="btn-smol sm:hidden" @click="addNewContact">+</button>
     </main>
   </div>
@@ -35,12 +37,14 @@
 
 <script>
 import  contactCard  from '#components'
+import  contactModal from '#components'
 
 export default {
   data() {
     return {
       searchQuery: "",
       contacts: [],
+      showModal: false,
     };
   },
   methods: {
