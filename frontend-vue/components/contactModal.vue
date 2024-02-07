@@ -2,29 +2,30 @@
   <div class="modal-overlay bg-opacity-70 bg-black flex items-center justify-center fixed inset-0">
     <div class="modal bg-white text-center p-8 rounded-lg">
       <h6 class="font-bold text-2xl mb-4">Enter contact details:</h6>
-      <form @submit.prevent="submitContact">
+      <Form @submit.prevent="submitContact">
         <div class="mb-4">
           <label for="name" class="labelForm">Name:</label>
-          <input v-model="contact.name" type="text" id="name" name="name" class="inputBox">
+          <Field v-model="contact.name" type="text" id="name" name="name" class="inputBox" :rules="validateName" />
+          <ErrorMessage name="name" />
         </div>
         <div class="mb-4">
           <label for="position" class="lableForm">Title:</label>
-          <input v-model="contact.position" type="text" id="position" name="position" class="inputBox">
+          <Field v-model="contact.position" type="text" id="position" name="position" class="inputBox" />
         </div>
         <div class="mb-4">
           <label for="adress" class="labelForm">Address:</label>
-          <input v-model="contact.adress" type="text" id="adress" name="adress" class="inputBox">
+          <Field v-model="contact.adress" type="text" id="adress" name="adress" class="inputBox" />
         </div>
         <div class="mb-4">
           <label for="email" class="labelForm">Email:</label>
-          <input v-model="contact.email" type="email" id="email" name="email" class="inputBox">
+          <Field v-model="contact.email" type="email" id="email" name="email" class="inputBox" />
         </div>
         <div class="mb-4">
           <label for="number" class="labelForm">Phone:</label>
-          <input v-model="contact.number" type="text" id="number" name="number" class="inputBox">
+          <Field v-model="contact.number" type="text" id="number" name="number" class="inputBox" />
         </div>
         <button type="submit" class="inputBox w-20">Submit</button>
-      </form>
+      </Form>
     </div>
     <div class="close absolute top-4 right-4 cursor-pointer" @click="$emit('close-modal')">
       <button class="btn-close w-10 h-10">X</button>
@@ -33,7 +34,10 @@
 </template>
 
 <script>
+import { Form, Field, ErrorMessage} from 'vee-validate';
+import * as Yup from 'yup';
 import axios from 'axios';
+import { errorMessages } from 'vue/compiler-sfc';
 export default {
   data() {
     return {
@@ -46,6 +50,11 @@ export default {
       },
     };
   },
+  components: {
+    Form,
+    Field,
+    ErrorMessage
+},
   methods: {
     submitContact() {
       axios.post('http://localhost:8000/api/contact', this.contact).then(res => {
@@ -67,6 +76,11 @@ export default {
       console.log('Form submitted:', this.contact);
       this.$emit('close-modal');
     },
+    validateName(value) {
+      if (!value) {
+        return 'This field is required'
+      }
+    }
   },
 };
 </script>
