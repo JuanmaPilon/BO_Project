@@ -28,4 +28,7 @@ body {
     .btn-smol {
         @apply font-roboto font-semibold bg-violet-400 text-white py-1 rounded-full text-8xl p-6 m-5 ml-auto;
     }
+    .labelForm {
+        @apply block text-sm font-medium text-gray-700;
+    }
 }
