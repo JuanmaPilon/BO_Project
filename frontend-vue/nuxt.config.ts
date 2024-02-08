@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     '@/assets/css/tailwind.css'
   ],
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@vee-validate/nuxt',
   ],
   app: {
     head: {
