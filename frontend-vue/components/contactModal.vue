@@ -2,31 +2,31 @@
   <div class="modal-overlay bg-opacity-70 bg-black flex items-center justify-center fixed inset-0">
     <div class="modal bg-white text-center p-8 rounded-lg">
       <h6 class="font-bold text-2xl mb-4">Enter contact details:</h6>
-      <form @submit.prevent="submitContact">
+      <Form :validation-schema="schema" @submit="submitContact">
         <div class="mb-4">
           <label for="name" class="labelForm">Name:</label>
-          <Field type="text" id="name" name="name" class="inputBox" :rules="validateName" />
+          <Field v-model="contact.name" type="text" id="name" name="name" class="inputBox" :rules="validateName" />
           <ErrorMessage name="name" />
         </div>
         <div class="mb-4">
           <label for="position" class="lableForm">Title:</label>
-          <Field type="text" id="position" name="position" class="inputBox" />
+          <Field v-model="contact.position" type="text" id="position" name="position" class="inputBox" />
         </div>
         <div class="mb-4">
           <label for="adress" class="labelForm">Address:</label>
-          <Field type="text" id="adress" name="adress" class="inputBox" />
+          <Field v-model="contact.adress" type="text" id="adress" name="adress" class="inputBox" />
         </div>
         <div class="mb-4">
           <label for="email" class="labelForm">Email:</label>
-          <Field  type="email" id="email" name="email" class="inputBox" :rules="validateEmail" />
+          <Field v-model="contact.email" type="email" id="email" name="email" class="inputBox" :rules="validateEmail" />
           <ErrorMessage name="email" />
         </div>
         <div class="mb-4">
           <label for="number" class="labelForm">Phone:</label>
-          <Field type="text" id="number" name="number" class="inputBox" />
+          <Field v-model="contact.number" type="text" id="number" name="number" class="inputBox" />
         </div>
-        <button type="submit" class="inputBox w-20">Submit</button>
-      </form>
+        <button class="inputBox w-20">Submit</button>
+      </Form>
     </div>
     <div class="close absolute top-4 right-4 cursor-pointer" @click="$emit('close-modal')">
       <button class="btn-close w-10 h-10">X</button>
@@ -39,16 +39,23 @@ import { Form, Field, ErrorMessage} from 'vee-validate';
 import axios from 'axios';
 import * as yup from 'yup';
 
+
+
 export default {
   data() {
     return {
       contact: {
-        name: '',
-        position: '',
-        adress: '',
-        email: '',
-        number: '',
-      },
+      name: '',
+      position: '',
+      adress: '',
+      email: '',
+      number: '',
+    },
+    schema: yup.object({
+  email: yup.string().email().required(),
+  name: yup.string().required(),
+  position: yup.string().required()
+}),
     };
   },
   components: {
@@ -57,7 +64,8 @@ export default {
     ErrorMessage
 },
   methods: {
-    submitContact() {
+    submitContact(values) {
+      console.log(values, null, 2);
       axios.post('http://localhost:8000/api/contact', this.contact).then(res => {
         console.log(res, 'res');
         alert(res.data.message);
