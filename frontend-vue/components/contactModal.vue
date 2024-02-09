@@ -5,16 +5,18 @@
       <Form :validation-schema="schema" @submit="submitContact">
         <div class="mb-4">
           <label for="name" class="labelForm">Name:</label>
-          <Field v-model="contact.name" type="text" id="name" name="name" class="inputBox" :rules="validateName" />
+          <Field v-model="contact.name" type="text" id="name" name="name" class="inputBox" />
           <ErrorMessage name="name" />
         </div>
         <div class="mb-4">
           <label for="position" class="lableForm">Title:</label>
           <Field v-model="contact.position" type="text" id="position" name="position" class="inputBox" />
+          <ErrorMessage name="position" />
         </div>
         <div class="mb-4">
           <label for="adress" class="labelForm">Address:</label>
           <Field v-model="contact.adress" type="text" id="adress" name="adress" class="inputBox" />
+          <ErrorMessage name="adress" />
         </div>
         <div class="mb-4">
           <label for="email" class="labelForm">Email:</label>
@@ -24,6 +26,7 @@
         <div class="mb-4">
           <label for="number" class="labelForm">Phone:</label>
           <Field v-model="contact.number" type="text" id="number" name="number" class="inputBox" />
+          <ErrorMessage name="number" />
         </div>
         <button class="inputBox w-20">Submit</button>
       </Form>
@@ -52,9 +55,11 @@ export default {
       number: '',
     },
     schema: yup.object({
-  email: yup.string().email().required(),
-  name: yup.string().required(),
-  position: yup.string().required()
+    name: yup.string().required().min(3),
+    position: yup.string().required().min(3),
+    email: yup.string().email().required(),
+    number: yup.number().required().typeError('must be a number'),
+    adress: yup.string().required(),
 }),
     };
   },
@@ -85,11 +90,6 @@ export default {
       console.log('Form submitted:', this.contact);
       this.$emit('close-modal');
     },
-    validateName(value) {
-      if (!value) {
-        return 'This field is required'
-      } return true;
-    },
     validateEmail (value) {
         if (!value) {
         return 'This field is required';
@@ -98,7 +98,7 @@ export default {
       if (!regex.test(value)) {
         return 'This field must be a valid email';
       } return true
-    }
+    },
   },
 };
 </script>

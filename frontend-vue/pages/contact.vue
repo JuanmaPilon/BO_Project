@@ -38,6 +38,8 @@
 <script>
 import  contactCard  from '#components'
 import  contactModal from '#components'
+import axios from 'axios';
+
 
 export default {
   data() {
@@ -49,19 +51,14 @@ export default {
   },
   methods: {
     addNewContact() {},
+    getContact() {
+      axios.get('http://localhost:8000/api/contact').then(res => {
+        this.contacts = res.data.contacts;
+      });
+    },
   },
   mounted() {
-    this.contacts = [
-      {id: 1, name: 'Sujeto de proba 1' , description: 'CEO'},
-      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
-      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
-      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
-      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
-      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
-      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
-      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
-      {id: 2, name: 'Sujeto de proba 2' , description: 'Dev'},
-    ]
+   this.getContact();
   },
 };
 </script>
