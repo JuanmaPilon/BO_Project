@@ -150,5 +150,4 @@ public function destroy($id) {
         ]);
     }
 }
-
 }

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,11 @@ Route::get('contact/{id}', [ContactController::class,'show']);
 Route::get('contact/{id}/edit', [ContactController::class,'edit']);
 Route::put('contact/{id}/edit', [ContactController::class,'update']);
 Route::delete('contact/{id}/delete', [ContactController::class,'destroy']);
+Route::post('login', [UsersController::class,'login']);
+Route::group([
+    'middleware' => ['auth:api']
+], function() {
+    Route::get('user', [UsersController::class,'user']);
+    Route::get('refresh', [UsersController::class,'refreshToken']);
+    Route::get('logout', [UsersController::class,'logout']);
+});
