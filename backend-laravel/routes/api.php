@@ -27,6 +27,7 @@ Route::get('contact/{id}', [ContactController::class,'show']);
 Route::get('contact/{id}/edit', [ContactController::class,'edit']);
 Route::put('contact/{id}/edit', [ContactController::class,'update']);
 Route::delete('contact/{id}/delete', [ContactController::class,'destroy']);
+Route::post('register', [UsersController::class,'register']);
 Route::post('login', [UsersController::class,'login']);
 Route::group([
     'middleware' => ['auth:api']
