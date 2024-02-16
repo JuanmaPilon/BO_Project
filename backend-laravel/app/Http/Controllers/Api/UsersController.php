@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsersController extends Controller
 {
@@ -28,11 +29,37 @@ class UsersController extends Controller
 }
 
     public function login(Request $request) {
+        $request->validate([
+            "email" => "required|email",
+            "password" => "required",
+        ]);
+
+        $token = JWTAuth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
+
+        if(!empty($token)){
+            return response() -> json ([
+                "status" => true,
+                "message"=> "Login successfully",
+                "token" => $token
+            ]);
+        }  return response() -> json([
+                "status"=> false,
+                "message"=> "Invalid password or user",
+            ]);
 
     }
-    
     public function user() {
-    
+        
+        $userData = auth()->user();
+
+        return response() -> json([
+            "status"=> true,
+            "message"=> "Profile of User",
+            "data"=> $userData
+        ]);
     }
     
     public function refreshToken() {
