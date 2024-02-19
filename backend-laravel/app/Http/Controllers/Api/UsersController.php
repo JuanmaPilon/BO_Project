@@ -63,10 +63,23 @@ class UsersController extends Controller
     }
     
     public function refreshToken() {
-    
+        $newToken = auth()->refresh();
+
+        return response() -> json([
+            "status"=> true,
+            "message"=> "New token was generated",
+            "token"=> $newToken
+        ]);
     }
     
     public function logout() {
-    
+        return response() -> json([
+            "status"=> false,
+            "message"=> "Logged out succesfully"
+        ]);
+    }
+
+    public function delete() {
+        
     }
 }
