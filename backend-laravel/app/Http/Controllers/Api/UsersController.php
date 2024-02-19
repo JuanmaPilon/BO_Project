@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Laravel\Passport\PassportServiceProvider; 
 
 class UsersController extends Controller
 {
@@ -52,7 +53,6 @@ class UsersController extends Controller
 
     }
     public function user() {
-        
         $userData = auth()->user();
 
         return response() -> json([

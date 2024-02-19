@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\UsersController;
+use Laravel\Passport\PassportServiceProvider; 
 
 /*
 |--------------------------------------------------------------------------
