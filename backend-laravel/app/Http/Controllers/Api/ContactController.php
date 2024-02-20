@@ -30,6 +30,15 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json([
+                'status' => 401,
+                'message' => 'Unauthenticated'
+            ], 401);
+        }
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:191',
             'position' => 'required|string|max:191',

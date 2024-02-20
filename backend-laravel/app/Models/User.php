@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\Contact;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -55,6 +56,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function contacts(){
-        return $this->hasMany('Contact::class');
+        return $this->hasMany(Contact::class);
     }
 }

@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('contact', [ContactController::class, 'store']);
+
 Route::get('contact/{id}', [ContactController::class,'show']);
 Route::get('contact/{id}/edit', [ContactController::class,'edit']);
 Route::put('contact/{id}/edit', [ContactController::class,'update']);
@@ -33,6 +33,7 @@ Route::post('login', [UsersController::class,'login']);
 Route::group([
     'middleware' => ['auth:api']
 ], function() {
+    Route::post('contact', [ContactController::class, 'store']);
     Route::get('contact', [ContactController::class, 'index']);
     Route::get('user', [UsersController::class,'user']);
     Route::get('refresh', [UsersController::class,'refreshToken']);
