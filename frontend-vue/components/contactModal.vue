@@ -41,8 +41,7 @@
 import { Form, Field, ErrorMessage} from 'vee-validate';
 import axios from 'axios';
 import * as yup from 'yup';
-
-
+import { useAuthStores } from '../stores/authStores.js';
 
 export default {
   data() {
@@ -69,8 +68,7 @@ export default {
     ErrorMessage
 },
   methods: {
-    submitContact(values) {
-      console.log(values, null, 2);
+    submitContact() {
       axios.post('http://localhost:8000/api/contact', this.contact).then(res => {
         console.log(res, 'res');
         alert(res.data.message);

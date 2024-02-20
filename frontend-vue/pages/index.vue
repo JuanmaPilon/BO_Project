@@ -37,7 +37,8 @@ export default {
           password: this.password,
         });
         console.log(response.data);
-        
+        this.$router.push('/contact');
+
       } catch (error) {
         console.error('Error during login:', error);
       }
