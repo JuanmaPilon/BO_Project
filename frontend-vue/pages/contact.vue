@@ -28,7 +28,7 @@
       </div>
     </div>
     <button class="btn mt-4 hidden sm:block" @click="showModal = true">Add new contacts</button>
-    <contactModal v-show="showModal" @close-modal="showModal = false"/>
+    <contactModal v-show="showModal" @close-modal="showModal = false" @contact-added="handleContactAdded"/>
     
       <button class="btn-smol sm:hidden" @click="addNewContact">+</button>
     </main>
@@ -39,6 +39,7 @@
 import  contactCard  from '#components'
 import  contactModal from '#components'
 import axios from 'axios';
+import { useAuthStore } from '#imports';
 
 
 export default {
@@ -50,12 +51,24 @@ export default {
     };
   },
   methods: {
-    addNewContact() {},
-    getContact() {
-      axios.get('http://localhost:8000/api/contact').then(res => {
-        this.contacts = res.data.contacts;
-      });
-    },
+    async getContact() {
+  try {
+    const token = useAuthStore().token; 
+
+    const response = await axios.get('http://localhost:8000/api/contact', {
+      headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+    });
+
+    this.contacts = response.data.contacts;
+  } catch (error) {
+    console.error('Error getting contacts:', error);
+  }
+},
+handleContactAdded() {
+  this.getContact();
+}
   },
   mounted() {
    this.getContact();

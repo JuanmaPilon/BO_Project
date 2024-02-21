@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios';
+import { useAuthStore } from '#imports';
 
 export default {
   data() {
@@ -36,11 +37,26 @@ export default {
           email: this.email,
           password: this.password,
         });
-        console.log(response.data);
+        useAuthStore().setToken(response.data.token);
+        console.log(response.data.token);
         this.$router.push('/contact');
 
       } catch (error) {
         console.error('Error during login:', error);
+      }
+    },
+    async getContacts() {
+      try {
+        const token = useAuthStore().token;
+        const response = await axios.get('http://localhost:8000/api/contact', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        this.contacts = response.data.contacts;
+      } catch (error) {
+        console.error('Error getting contacts:', error);
       }
     },
   },

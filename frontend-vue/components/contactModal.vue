@@ -41,7 +41,8 @@
 import { Form, Field, ErrorMessage} from 'vee-validate';
 import axios from 'axios';
 import * as yup from 'yup';
-import { useAuthStores } from '../stores/authStores.js';
+import { useAuthStore } from '#imports';
+
 
 export default {
   data() {
@@ -68,26 +69,34 @@ export default {
     ErrorMessage
 },
   methods: {
-    submitContact() {
-      axios.post('http://localhost:8000/api/contact', this.contact).then(res => {
-        console.log(res, 'res');
-        alert(res.data.message);
+    async submitContact() {
+  try {
+    this.isSubmitting = true;
+    const token = useAuthStore().token;
+    const response = await axios.post(
+      'http://localhost:8000/api/contact',
+      this.contact,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response, 'response');
+    alert(response.data.message);
+    const newToken = response.data.newToken; 
 
-        this.contact.name = '';
-        this.contact.position = '';
-        this.contact.adress = '';
-        this.contact.email = '';
-        this.contact.number = '';
-      })
-      .catch(error => {
-        console.log('Response data:', error.response.data);
+    if (newToken) {
+      useAuthStore().setToken(newToken);
+    }
+  } catch (error) {
     console.error('Error submitting form:', error);
-    alert('Error submitting form. Please try again.');
-   
-  });;
-      console.log('Form submitted:', this.contact);
-      this.$emit('close-modal');
-    },
+    alert('Error submitting form. Try again.');
+  } finally {
+    this.isSubmitting = false;
+    this.$emit('close-modal');
+  }
+},
     validateEmail (value) {
         if (!value) {
         return 'This field is required';
