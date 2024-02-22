@@ -34,4 +34,13 @@ body {
     .contactInfoCard{
         @apply bg-white rounded-lg p-3 items-center shadow lg:w-1/3 justify-center flex flex-wrap mx-auto;
     }
+    .contactMain {
+       @apply text-lg font-bold mb-1
+    }
+    .contactBox {
+        @apply w-full lg:w-64 mb-3;
+    }
+    .contactSub {
+        @apply text-sm text-gray-400 mb-2;
+    }
 }

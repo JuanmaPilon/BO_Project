@@ -1,9 +1,29 @@
 <template>
-    <div class="contactInfoCard">
-      
-      <div class="contactBox w-48 mb-3">
-        <p class="contactMain text-lg font-bold mb-1">Name</p>
-        <p class="inputBox text-sm text-gray-400 mb-2">Dev{{ contact.name }}</p>
+    <div class="contactInfoCard grid grid-cols-2 gap-3">
+
+      <div class="contactBox">
+        <p class="contactMain">Name</p>
+        <p class="inputBox contactSub">Jaimito{{ contact.name }}</p>
+      </div>
+      <div class="contactBox ml-auto">
+        <p class="contactMain">Address</p>
+        <p class="inputBox contactSub">Madagascar{{ contact.adress }}</p>
+      </div>
+      <div class="contactBox">
+        <p class="contactMain">Title</p>
+        <p class="inputBox contactSub">K-Pop Singer{{ contact.position }}</p>
+      </div>
+      <div class="contactBox ml-auto">
+        <p class="contactMain">Phone</p>
+        <p class="inputBox contactSub">N/A{{ contact.number }}</p>
+      </div>
+      <div class="contactBox">
+        <p class="contactMain">Profile Picture</p>
+        <p class="inputBox contactSub">PP</p>
+      </div>
+      <div class="contactBox ml-auto">
+        <p class="contactMain">Email</p>
+        <p class="inputBox contactSub">jaimito@gmail.com{{ contact.email }}</p>
       </div>
 
     </div>
@@ -20,6 +40,32 @@
         type: Object,
         required: true,
       },
+    },
+    mounted() {
+      this.getContactInfo();
+    },
+    methods: {
+      async getContactInfo() {
+        try {
+          const token = useAuthStore().token;
+          if (!token) {
+      console.error('Token not available');
+      return;
+    }
+    if (!this.contact.id) {
+      console.error('Contact ID is missing');
+      return;
+    }
+          const response = await axios.get(`http://localhost:8000/api/contact/${this.contact.id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          this.contact.name = response.data.name;
+        } catch (error) {
+          console.error('Error getting contact info' , error);
+        }
+      }
     },
   };
   </script>
