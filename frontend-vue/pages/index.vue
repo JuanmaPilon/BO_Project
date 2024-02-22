@@ -12,9 +12,9 @@
             <label for="password" class="inputText">Password</label>
             <input v-model="password" type="password" id="password" name="password" class="inputBox" placeholder="**********"/>
           </div>
-          <button type="submit" class="btn">LOGIN</button>
         </form>
       </div>
+      <button type="button" class="btn" @click="login">LOGIN</button>
     </main>
   </div>
 </template>

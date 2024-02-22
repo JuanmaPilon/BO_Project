@@ -18,18 +18,20 @@
     </header>
 
     <main class="flex flex-col items-center justify-top h-screen">
-      <div v-if="contacts.length === 0" class="text-center">
-        <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-96" /> <!-- could not resolve the issue with config of nuxtimg-->
+      <div v-if="loading" class="text-center">
+        <p class="text-2xl font-semibold font-roboto">Loading contacts...</p>
+      </div>
+      <div v-else-if="contacts.length === 0" class="text-center">
+        <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-96" />
         <p class="text-2xl font-semibold font-roboto">Add new contacts to your database</p>
       </div>
       <div v-else class="flex flex-wrap">
         <div class=" justify-center lg:w-1/3 mx-auto px-16" v-for="contact in contacts" :key="contact.id">
           <contactCard :contact="contact"/>
+        </div>
       </div>
-    </div>
-    <button class="btn mt-4 hidden sm:block" @click="showModal = true">Add new contacts</button>
-    <contactModal v-show="showModal" @close-modal="showModal = false" @contact-added="handleContactAdded"/>
-    
+      <button class="btn mt-4 hidden sm:block" @click="showModal = true">Add new contacts</button>
+      <contactModal v-show="showModal" @close-modal="showModal = false" @contact-added="handleContactAdded"/>
       <button class="btn-smol sm:hidden" @click="addNewContact">+</button>
     </main>
   </div>
@@ -41,39 +43,41 @@ import  contactModal from '#components'
 import axios from 'axios';
 import { useAuthStore } from '#imports';
 
-
 export default {
   data() {
     return {
       searchQuery: "",
       contacts: [],
+      loading: true,
       showModal: false,
     };
   },
   methods: {
     async getContact() {
-  try {
-    const token = useAuthStore().token; 
+      try {
+        const token = useAuthStore().token;
+        const response = await axios.get('http://localhost:8000/api/contact', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-    const response = await axios.get('http://localhost:8000/api/contact', {
-      headers: {
-        Authorization: `Bearer ${token}`, 
-      },
-    });
-
-    this.contacts = response.data.contacts;
-  } catch (error) {
-    console.error('Error getting contacts:', error);
-  }
-},
-handleContactAdded() {
-  this.getContact();
-}
+        this.contacts = response.data.contacts;
+        this.loading = false;
+      } catch (error) {
+        console.error('Error getting contacts:', error);
+        this.loading = false;
+      }
+    },
+    handleContactAdded() {
+      this.getContact();
+    }
   },
   mounted() {
-   this.getContact();
+    this.getContact();
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
