@@ -42,7 +42,10 @@
       },
     },
     mounted() {
-      this.getContactInfo();
+      
+    },
+    watch: {
+      'contact.id' : 'getContactInfo',
     },
     methods: {
       async getContactInfo() {
@@ -61,7 +64,7 @@
               Authorization: `Bearer ${token}`,
             },
           });
-          this.contact.name = response.data.name;
+          this.contact = response.data;
         } catch (error) {
           console.error('Error getting contact info' , error);
         }

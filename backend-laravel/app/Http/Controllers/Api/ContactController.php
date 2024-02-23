@@ -75,4 +75,29 @@ class ContactController extends Controller
             }
         }
     }
+
+    public function show($id)
+{
+    $user = Auth::user();
+    $contact = Contact::find($id);
+
+    if (!$contact) {
+        return response()->json([
+            'status' => 404,
+            'message' => 'Contact not found'
+        ], 404);
+    }
+
+    if ($user->id !== $contact->user_id) {
+        return response()->json([
+            'status' => 403,
+            'message' => 'You dontt have permission to access this contact'
+        ], 403);
+    }
+
+    return response()->json([
+        'status' => 200,
+        'contact' => $contact
+    ], 200);
+}
 }
