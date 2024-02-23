@@ -89,6 +89,7 @@ export default {
     if (newToken) {
       useAuthStore().setToken(newToken);
     }
+    this.$emit('contact-added', { ...this.contact });
   } catch (error) {
     console.error('Error submitting form:', error);
     alert('Error submitting form. Try again.');

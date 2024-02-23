@@ -42,10 +42,10 @@
       },
     },
     mounted() {
-      
+      this.getContactInfo;
     },
     watch: {
-      'contact.id' : 'getContactInfo',
+      'contact.id': 'getContactInfo',
     },
     methods: {
       async getContactInfo() {

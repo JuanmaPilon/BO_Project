@@ -31,7 +31,7 @@
         </div>
       </div>
       <button class="btn mt-4 hidden sm:block" @click="showModal = true">Add new contacts</button>
-      <contactModal v-show="showModal" @close-modal="showModal = false" @contact-added="handleContactAdded"/>
+      <contactModal v-show="showModal" @close-modal="showModal = false" @contact-added="handleContactAdded($event)"/>
       <button class="btn-smol sm:hidden" @click="addNewContact">+</button>
     </main>
   </div>
@@ -62,15 +62,15 @@ export default {
           },
         });
 
-        this.contacts = response.data.contacts;
+        this.contacts.splice(0, this.contacts.length, ...response.data.contacts);
         this.loading = false;
       } catch (error) {
         console.error('Error getting contacts:', error);
         this.loading = false;
       }
     },
-    handleContactAdded() {
-      this.getContact();
+    handleContactAdded(contact) {
+      this.contacts.push(contact);
     }
   },
   mounted() {
