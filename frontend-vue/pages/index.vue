@@ -22,6 +22,7 @@
 <script>
 import axios from 'axios';
 import { useAuthStore } from '#imports';
+import { useContactStore } from '#imports';
 
 export default {
   data() {
@@ -53,7 +54,6 @@ export default {
             Authorization: `Bearer ${token}`,
           },
         });
-
         this.contacts = response.data.contacts;
       } catch (error) {
         console.error('Error getting contacts:', error);

@@ -22,23 +22,36 @@
 
 <script>
   import contactInfo from '#components';
+  import { useAuthStore } from '#imports';
+  import { useContactStore } from '#imports';
 
 export default {
   data() {
     return {
-        contact: [],
+        contact: {},
     };
   },
   methods: {
     editContact() {
 
     },
+    async fetchContacts() {
+      try {
+        const token = useAuthStore().token;
+        const response = await axios.get('http://localhost:8000/api/contact', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        this.contact = response.data.contacts;
+      } catch (error) {
+        console.error('Error getting contacts:', error);
+      }
+    },
   },
   mounted() {
-    this.contacts = [
-      {Email: 'pedritoOMG@bayoo.com'},
-    ]
-  },
+    this.fetchContacts();
+ },
 };
 </script>
 
