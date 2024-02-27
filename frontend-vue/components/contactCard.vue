@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink to="contactProfile">
+  <NuxtLink :to="{ name: 'contactProfile', params: { id: contact.id } }" @click="selectContact(contact.id)">
       <div class="contactCard bg-white rounded-lg p-4 flex items-center shadow mb-4">
         <img src="../static/emptyContact.png" :alt="contact.name" class="contactImage w-16 h-16 rounded-full mr-4" />
         <div class="contactInfo flex-grow">
@@ -12,30 +12,22 @@
   </template>
   
   <script>
-  import axios from 'axios';
+  import { useContactStore } from '#imports';
   
   export default {
-    props: {
-      contact: {
-        type: Object,
-        required: true,
-      },
+  props: {
+    contact: {
+      type: Object,
+      required: true,
     },
-    methods: {
-      getContact() {
-        axios.get(`http://localhost:8000/api/contact/${this.contact.id}`)
-          .then(res => {
-            console.log('Respuesta del servidor:', res);
-            this.contact = res.data;
-          })
-          .catch(error => {
-            console.error('Error en la solicitud:', error);
-          });
-      },
+  },
+  methods: {
+    selectContact(id) {
+      useContactStore().setSelectedContactId(id);
     },
-  };
-  </script>
-  
-  <style>
-  
-  </style>  
+  },
+};
+</script>
+
+<style>
+</style>

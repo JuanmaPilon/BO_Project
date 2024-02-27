@@ -5,6 +5,7 @@ import axios from 'axios';
 export const useContactStore = defineStore('contact', {
   state: () => ({
     contacts: [],
+    selectedContactId: null,
   }),
   actions: {
     async fetchContacts() {
@@ -19,6 +20,12 @@ export const useContactStore = defineStore('contact', {
       } catch (error) {
         console.error('Error fetching contacts', error);
       }
+    },
+    setSelectedContactId(id) {
+      this.selectedContactId = id;
+    },
+    getSelectedContactId() {
+      return this.selectedContactId;
     },
   },
 });
