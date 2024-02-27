@@ -24,6 +24,7 @@
   import contactInfo from '#components';
   import { useAuthStore } from '#imports';
   import { useContactStore } from '#imports';
+  import axios from 'axios';
 
 export default {
   data() {
