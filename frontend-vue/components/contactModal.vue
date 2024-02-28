@@ -28,6 +28,11 @@
           <Field v-model="contact.number" type="text" id="number" name="number" class="inputBox" />
           <ErrorMessage name="number" />
         </div>
+        <div class="mb-4">
+         <label for="image" class="labelForm">Image URL:</label>
+         <Field v-model="contact.image" type="url" id="image" name="image" class="inputBox" />
+         <ErrorMessage name="image" />
+         </div>
         <button class="inputBox w-20">Submit</button>
       </Form>
     </div>
@@ -60,6 +65,7 @@ export default {
     email: yup.string().email().required(),
     number: yup.number().required().typeError('must be a number'),
     adress: yup.string().required(),
+    image: yup.string().url().required(),
 }),
     };
   },

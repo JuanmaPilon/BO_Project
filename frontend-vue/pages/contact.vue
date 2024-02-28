@@ -16,7 +16,6 @@
         </div>
       </div>
     </header>
-
     <main class="flex flex-col items-center justify-top h-screen">
       <div v-if="loading" class="text-center">
         <p class="text-2xl font-semibold font-roboto">Loading contacts...</p>
@@ -26,8 +25,10 @@
         <p class="text-2xl font-semibold font-roboto">Add new contacts to your database</p>
       </div>
       <div v-else class="flex flex-wrap">
-        <div class=" justify-center lg:w-1/3 mx-auto px-16" v-for="contact in contacts" :key="contact.id">
-          <contactCard :contact="contact"/>
+        <div class="justify-center lg:w-1/3 mx-auto px-16" v-for="contact in contacts" :key="contact.id">
+          <NuxtLink :to="{ name: 'contactProfile', params: { id: String(contact.id) }, replace: true }">
+        <contactCard :contact="contact"/>
+        </NuxtLink>
         </div>
       </div>
       <button class="btn mt-4 hidden sm:block" @click="showModal = true">Add new contacts</button>
