@@ -22,7 +22,7 @@
   <div class="relative">
     <div class="grayBgSqr grayBgSqrMd">
       <button
-        class="editButton btn absolute bottom-15 right-5 px-10 py-3"
+        class="editButtonMd"
         @click="editContact"
       >
         EDIT
@@ -40,7 +40,7 @@
           class="profileImage profileImageMd"
         />
     </div>
-    <div class="text-center mt-2">
+    <div class="profileHeader profileHeaderMd">
       <h1 class="inputText">{{ contact.name }}</h1>
       <p class="labelForm mb-5">{{ contact.position }}</p>
     </div>
@@ -49,6 +49,12 @@
       <contactInfo v-if="contact" :contact="contact" />
     </div>
   </div>
+  <button
+      class="editButton"
+      @click="editContact"
+    >
+      EDIT
+    </button>
 </template>
 
 <script>

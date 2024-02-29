@@ -61,4 +61,16 @@ body {
     .grayBgSqrMd {
         @apply grayBgSqr md:bg-gray-200 md:mx-20 md:my-10 md:h-64;
     }
+    .editButton {
+        @apply flex justify-center items-center btn bottom-[20px] absolute px-28 py-3 md:hidden left-1/2 transform -translate-x-1/2;
+    }
+    .editButtonMd {
+        @apply btn absolute right-5 px-10 py-3 md:block hidden;
+    }
+    .profileHeaderMd{
+        @apply text-center md:!mt-12 z-10 relative;
+    }
+    .profileHeader {
+        @apply -mt-32 relative z-20 mb-20;
+    }
 }
