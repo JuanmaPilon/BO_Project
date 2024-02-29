@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('position');
-            $table->string('adress');
-            $table->string('email');
-            $table->string('number');
-            $table->timestamps();
+        Schema::table('contacts', function (Blueprint $table) {
+            $table->string('image')->nullable();
         });
     }
 
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('contacts', function (Blueprint $table) {
+            //
+        });
     }
 };

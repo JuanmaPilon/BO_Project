@@ -45,6 +45,7 @@ class ContactController extends Controller
             'adress' => 'required|string|max:191',
             'email' => 'required|email|max:191',
             'number' => 'required|string|max:191',
+            'image' => 'url|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -59,7 +60,8 @@ class ContactController extends Controller
                 'position' => $request->position,
                 'adress' => $request->adress,
                 'email' => $request->email,
-                'number' => $request->number
+                'number' => $request->number,
+                'image' => $request->image,
             ]);
 
             if ($contact) {

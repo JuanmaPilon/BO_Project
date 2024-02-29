@@ -17,7 +17,8 @@ class Contact extends Model
     'position',
     'adress',
     'email',
-    'number'
+    'number',
+    'image'
     ];
 
     public function user(){
