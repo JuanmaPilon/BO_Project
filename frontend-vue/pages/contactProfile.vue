@@ -1,31 +1,55 @@
 <template>
-  <div class="profileBg bg-gray-200 mx-20 my-10 rounded-lg p-2 overflow-visible relative h-64 flex flex-col justify-end">
-    <div class="profileHeader relative">
-      <img
-        v-show="contact.image !== undefined && contact.image !== null"
-        :src="contact.image || 'https://cdn-icons-png.flaticon.com/512/3135/3135768.png'"
-        alt="profileImage"
-        class="block mx-auto object-cover h-40 w-40 absolute left-1/2 transform -translate-x-1/2 z-10 bottom-[-70px]"
-      />
-      <img
-        v-show="contact.image === undefined || contact.image === null"
-        src="../static/emptyContact.png"
-        alt="emptyProfileImage"
-        class="block mx-auto object-cover h-40 w-40 absolute left-1/2 transform -translate-x-1/2 z-0 bottom-[-70px]"
-      />
       <button
-        class="editButton btn absolute bottom-3 right-5 px-10 py-3"
+      class="backButton backButtonMd"
+      @click="goBack"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        class="h-6 w-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+        />
+      </svg>
+      <span class="contactSub">Back</span>
+    </button>
+  <div class="relative">
+    <div class="grayBgSqr grayBgSqrMd">
+      <button
+        class="editButton btn absolute bottom-15 right-5 px-10 py-3"
         @click="editContact"
       >
         EDIT
       </button>
+        <img
+          v-show="contact.image !== undefined && contact.image !== null"
+          :src="contact.image || 'https://cdn-icons-png.flaticon.com/512/3135/3135768.png'"
+          alt="profileImage"
+          class="profileImage profileImageMd"
+        />
+        <img
+          v-show="contact.image === undefined || contact.image === null"
+          src="../static/emptyContact.png"
+          alt="emptyProfileImage"
+          class="profileImage profileImageMd"
+        />
+    </div>
+    <div class="text-center mt-2">
+      <h1 class="inputText">{{ contact.name }}</h1>
+      <p class="labelForm mb-5">{{ contact.position }}</p>
+    </div>
+  
+    <div class="contactInfoContainer mx-20">
+      <contactInfo v-if="contact" :contact="contact" />
     </div>
   </div>
-  <div class="contactInfoContainer mx-20">
-    <contactInfo v-if="contact" :contact="contact" />
-  </div>
 </template>
-
 
 <script>
 import contactInfo from '#components';
