@@ -68,9 +68,9 @@ body {
         @apply btn absolute right-5 px-10 py-3 md:block hidden;
     }
     .profileHeaderMd{
-        @apply text-center md:!mt-12 z-10 relative;
+        @apply text-center md:!mt-12 z-10 relative md:!mb-8;
     }
     .profileHeader {
-        @apply -mt-32 relative z-20 mb-20;
+        @apply -mt-32 relative z-20 mb-16;
     }
 }

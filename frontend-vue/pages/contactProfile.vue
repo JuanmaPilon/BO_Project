@@ -44,7 +44,6 @@
       <h1 class="inputText">{{ contact.name }}</h1>
       <p class="labelForm mb-5">{{ contact.position }}</p>
     </div>
-  
     <div class="contactInfoContainer mx-20">
       <contactInfo v-if="contact" :contact="contact" />
     </div>
@@ -68,6 +67,7 @@ export default {
       contact: {
         image: 'https://cdn-icons-png.flaticon.com/512/3135/3135768.png'
       },
+      loadingContactDetails: true,
     };
   },
   methods: {
@@ -94,8 +94,13 @@ export default {
         }
       } catch (error) {
         console.error('Error getting contacts:', error);
+      } finally {
+        this.loadingContactDetails = false;
       }
     },
+    goBack() {
+      this.$router.push('/contact');
+    }
   },
   mounted() {
     const selectedContactId = useContactStore().getSelectedContactId() || 0;
