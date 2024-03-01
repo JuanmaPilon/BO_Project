@@ -53,7 +53,7 @@ body {
         @apply block mx-auto object-cover h-24 w-24 absolute left-1/2 transform -translate-x-1/2 z-10 bottom-[100px] rounded-full mr-4;
     }
     .profileImageMd {
-        @apply profileImage md:h-40 md:w-40 md:bottom-[-30px] w-40 h-40 rounded-full mr-4;
+        @apply profileImage md:h-40 md:w-40 md:bottom-[-30px] rounded-full mr-4;
     }
     .profileImageCard {
         @apply w-16 h-16 rounded-full mr-4;
