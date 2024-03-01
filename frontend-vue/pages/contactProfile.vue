@@ -1,59 +1,38 @@
 <template>
       <button
       class="backButton backButtonMd"
-      @click="goBack"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        class="h-6 w-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M10 19l-7-7m0 0l7-7m-7 7h18"
-        />
-      </svg>
+      @click="goBack">
+    <i class="fas fa-arrow-left fa-lg"></i>
       <span class="contactSub">Back</span>
     </button>
-  <div class="relative">
+    <div class="relative">
     <div class="grayBgSqr grayBgSqrMd">
-      <button
-        class="editButtonMd"
-        @click="editContact"
-      >
+      <button class="editButtonMd" @click="editContact">
         EDIT
       </button>
-        <img
-          v-show="contact.image !== undefined && contact.image !== null"
-          :src="contact.image || 'https://cdn-icons-png.flaticon.com/512/3135/3135768.png'"
-          alt="profileImage"
-          class="profileImage profileImageMd"
-        />
-        <img
-          v-show="contact.image === undefined || contact.image === null"
-          src="../static/emptyContact.png"
-          alt="emptyProfileImage"
-          class="profileImage profileImageMd"
-        />
+      <img
+        v-if="!loadingContactDetails && contact.image && !imageError"
+        :src="contact.image"
+        alt="profileImage"
+        class="profileImage profileImageMd"
+        @load="handleImageLoad"
+        @error="handleImageError"
+      />
+      <img
+        v-if="!loadingContactDetails && (!contact.image || imageError)"
+        src="../static/emptyContact.png"
+        alt="emptyProfileImage"
+        class="profileImage profileImageMd"
+      />
     </div>
     <div class="profileHeader profileHeaderMd">
       <h1 class="inputText">{{ contact.name }}</h1>
       <p class="labelForm mb-5">{{ contact.position }}</p>
     </div>
     <div class="contactInfoContainer mx-20">
-      <contactInfo v-if="contact" :contact="contact" />
+      <contactInfo v-if="!loadingContactDetails && contact" :contact="contact" />
     </div>
   </div>
-  <button
-      class="editButton"
-      @click="editContact"
-    >
-      EDIT
-    </button>
 </template>
 
 <script>
@@ -64,15 +43,12 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      contact: {
-        image: 'https://cdn-icons-png.flaticon.com/512/3135/3135768.png'
-      },
+      contact: {},
       loadingContactDetails: true,
+      imageError: false,
     };
   },
   methods: {
-    editContact() {
-    },
     async fetchContacts(selectedContactId) {
       try {
         const token = useAuthStore().token;
@@ -98,9 +74,15 @@ export default {
         this.loadingContactDetails = false;
       }
     },
+    editContact() {
+      
+    },
+    handleImageError() {
+      this.imageError = true;
+    },
     goBack() {
       this.$router.push('/contact');
-    }
+    },
   },
   mounted() {
     const selectedContactId = useContactStore().getSelectedContactId() || 0;

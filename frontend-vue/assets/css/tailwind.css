@@ -50,10 +50,13 @@ body {
         @apply backButton md:top-4 md:left-5;
     }
     .profileImage {
-        @apply block mx-auto object-cover h-24 w-24 absolute left-1/2 transform -translate-x-1/2 z-10 bottom-[100px];
+        @apply block mx-auto object-cover h-24 w-24 absolute left-1/2 transform -translate-x-1/2 z-10 bottom-[100px] rounded-full mr-4;
     }
     .profileImageMd {
-        @apply profileImage md:h-40 md:w-40 md:bottom-[-30px];
+        @apply profileImage md:h-40 md:w-40 md:bottom-[-30px] w-40 h-40 rounded-full mr-4;
+    }
+    .profileImageCard {
+        @apply w-16 h-16 rounded-full mr-4;
     }
     .grayBgSqr {
         @apply bg-fuchsia-100 mx-6 my-12 rounded-lg p-2 overflow-visible relative h-52 flex flex-col justify-end;
