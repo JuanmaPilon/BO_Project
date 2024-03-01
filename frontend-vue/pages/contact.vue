@@ -16,25 +16,31 @@
         </div>
       </div>
     </header>
-    <main class="flex flex-col items-center justify-top h-screen">
-      <div v-if="loading" class="text-center">
+    <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-2 items-center justify-center h-screen md:mx-80">
+      <div v-if="loading" class="text-center col-span-full">
         <p class="text-2xl font-semibold font-roboto">Loading contacts...</p>
       </div>
-      <div v-else-if="contacts.length === 0" class="text-center">
+      <div v-else-if="contacts.length === 0" class="text-center col-span-full">
         <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-96" />
         <p class="text-2xl font-semibold font-roboto">Add new contacts to your database</p>
       </div>
-      <div v-else class="flex flex-wrap">
-        <div class="justify-center lg:w-1/3 mx-auto px-16" v-for="contact in contacts" :key="contact.id">
-          <NuxtLink :to="{ name: 'contactProfile', params: { id: String(contact.id) }, replace: true }">
-        <contactCard :contact="contact"/>
-        </NuxtLink>
-        </div>
-      </div>
-      <button class="btn mt-4 hidden sm:block" @click="showModal = true">Add new contacts</button>
-      <contactModal v-show="showModal" @close-modal="showModal = false" @contact-added="handleContactAdded($event)"/>
-      <button class="btn-smol sm:hidden" @click="addNewContact">+</button>
+      <NuxtLink
+        v-else
+        v-for="contact in contacts"
+        :key="contact.id"
+        :to="{ name: 'contactProfile', params: { id: String(contact.id) }, replace: true }"
+        class="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 mb-1"
+      >
+        <contactCard :contact="contact" />
+      </NuxtLink>
     </main>
+    <div class="flex items-center justify-center h-screen">
+      <button class="btn-smol sm:hidden" @click="addNewContact">+</button>
+    </div>
+    <div class="flex items-center justify-center h-screen">
+    <button class="btn mt-4  sm:block flex items-center justify-center" @click="showModal = true">Add new contacts</button>
+    </div>
+    <contactModal v-show="showModal" @close-modal="showModal = false" @contact-added="handleContactAdded($event)" />
   </div>
 </template>
 

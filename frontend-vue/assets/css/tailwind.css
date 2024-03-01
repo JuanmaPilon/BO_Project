@@ -20,7 +20,7 @@ body {
         @apply block text-black text-xl font-bold mb-2;
     }
     .btn {
-        @apply font-roboto font-semibold text-xl bg-violet-400 text-white px-28 py-4 rounded-full mt-10;
+        @apply font-roboto font-semibold text-xl bg-violet-400 text-white px-28 py-4 rounded-full;
     }
     .container {
         @apply flex flex-col items-center justify-center h-screen;
