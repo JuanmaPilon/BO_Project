@@ -16,7 +16,7 @@
         </div>
       </div>
     </header>
-    <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-2 items-center justify-center h-screen md:mx-80">
+    <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 md:gap-5 items-center justify-center md:mx-80">
       <div v-if="loading" class="text-center col-span-full">
         <p class="text-2xl font-semibold font-roboto">Loading contacts...</p>
       </div>
@@ -29,16 +29,16 @@
         v-for="contact in contacts"
         :key="contact.id"
         :to="{ name: 'contactProfile', params: { id: String(contact.id) }, replace: true }"
-        class="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 mb-1"
+        class="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 md:mx-8 -mb-5 md:mb-0"
       >
         <contactCard :contact="contact" />
       </NuxtLink>
     </main>
-    <div class="flex items-center justify-center h-screen">
-      <button class="btn-smol sm:hidden" @click="addNewContact">+</button>
+    <div class="flex items-center justify-center">
+      <button class="btn-smol sm:hidden" @click="showModal = true">+</button>
     </div>
-    <div class="flex items-center justify-center h-screen">
-    <button class="btn mt-4  sm:block flex items-center justify-center" @click="showModal = true">Add new contacts</button>
+    <div class="flex items-center justify-center">
+      <button class="btn mt-4 md:block flex items-center justify-center invisible md:visible" @click="showModal = true">Add new contacts</button>
     </div>
     <contactModal v-show="showModal" @close-modal="showModal = false" @contact-added="handleContactAdded($event)" />
   </div>

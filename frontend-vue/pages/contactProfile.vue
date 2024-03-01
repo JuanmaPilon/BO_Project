@@ -33,6 +33,12 @@
       <contactInfo v-if="!loadingContactDetails && contact" :contact="contact" />
     </div>
   </div>
+  <button
+      class="editButton"
+      @click="editContact"
+    >
+      EDIT
+    </button>
 </template>
 
 <script>
