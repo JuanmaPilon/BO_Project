@@ -27,5 +27,8 @@ export const useContactStore = defineStore('contact', {
     getSelectedContactId() {
       return this.selectedContactId;
     },
+    setContacts(contacts) {
+      this.contacts = contacts;
+    }
   },
 });

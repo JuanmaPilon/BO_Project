@@ -22,7 +22,9 @@
         <p class="text-2xl font-semibold font-roboto">Loading contacts...</p>
       </div>
       <div v-else-if="filteredContacts.length === 0" class="text-center col-span-full">
-        <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-96" />
+        <div class="flex items-center justify-center">
+          <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-96" />
+        </div>
         <p class="text-2xl font-semibold font-roboto">No contacts found</p>
       </div>
       <NuxtLink
@@ -44,6 +46,7 @@
     <contactModal v-show="showModal" @close-modal="showModal = false" @contact-added="handleContactAdded($event)" />
   </div>
 </template>
+
 
 <script>
 import  contactCard  from '#components'
