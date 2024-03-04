@@ -14,7 +14,7 @@
           </div>
         </form>
       </div>
-      <button type="button" class="btn" @click="login">LOGIN</button>
+      <button type="button" class="btn mt-10" @click="login">LOGIN</button>
     </main>
   </div>
 </template>

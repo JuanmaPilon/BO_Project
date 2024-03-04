@@ -9,6 +9,7 @@
             id="search"
             v-model="searchQuery"
             class="inputBox bg-white pl-8"
+            placeholder="Search contacts"
           />
           <label for="search" class="inputText absolute left-2 top-1/2 transform -translate-y-1/2">
             <i class="fas fa-search"></i>
@@ -20,13 +21,13 @@
       <div v-if="loading" class="text-center col-span-full">
         <p class="text-2xl font-semibold font-roboto">Loading contacts...</p>
       </div>
-      <div v-else-if="contacts.length === 0" class="text-center col-span-full">
+      <div v-else-if="filteredContacts.length === 0" class="text-center col-span-full">
         <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-96" />
-        <p class="text-2xl font-semibold font-roboto">Add new contacts to your database</p>
+        <p class="text-2xl font-semibold font-roboto">No contacts found</p>
       </div>
       <NuxtLink
         v-else
-        v-for="contact in contacts"
+        v-for="contact in filteredContacts"
         :key="contact.id"
         :to="{ name: 'contactProfile', params: { id: String(contact.id) }, replace: true }"
         class="col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 md:mx-8 -mb-5 md:mb-0"
@@ -58,6 +59,13 @@ export default {
       loading: true,
       showModal: false,
     };
+  },
+  computed: {
+    filteredContacts() {
+      return this.contacts.filter(contact => 
+      contact.name.toLowerCase().includes(this.searchQuery.toLocaleLowerCase())
+      );
+    },
   },
   methods: {
     async getContact() {
