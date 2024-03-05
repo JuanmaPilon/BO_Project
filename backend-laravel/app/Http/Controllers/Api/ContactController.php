@@ -103,4 +103,52 @@ class ContactController extends Controller
         'contact' => $contact
     ], 200);
 }
+
+public function update(Request $request, $id){
+    $user = Auth::user();
+    $contact = Contact::find($id);
+
+    if (!$contact) {
+        return response()->json([
+            'status' => 404,
+            'message' => 'Contact not found'
+            ], 404);
+         }
+         if ($user->id !== $contact->user_id) {
+            return response()->json([
+                'status' => 403,
+                'message' => 'You don\'t have permission to update this contact'
+            ], 403);
+        }
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:191',
+            'position' => 'required|string|max:191',
+            'adress' => 'required|string|max:191',
+            'email' => 'required|email|max:191',
+            'number' => 'required|string|max:191',
+            'image' => 'url|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->messages()
+            ], 422);
+        } else {
+            $contact->update([
+                'name' => $request->name,
+                'position' => $request->position,
+                'adress' => $request->adress,
+                'email' => $request->email,
+                'number' => $request->number,
+                'image' => $request->image,
+            ]);
+
+            return response()->json([
+                'status' => 200,
+                'message' => 'Contact updated successfully',
+                'contact' => $contact
+            ]);
+        }
+    }
 }

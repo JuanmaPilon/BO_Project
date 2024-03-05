@@ -24,8 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::get('contact/{id}/edit', [ContactController::class,'edit']);
-Route::put('contact/{id}/edit', [ContactController::class,'update']);
 Route::delete('contact/{id}/delete', [ContactController::class,'destroy']);
 Route::post('register', [UsersController::class,'register']);
 Route::post('login', [UsersController::class,'login']);
@@ -34,6 +32,7 @@ Route::group([
 ], function() {
     Route::post('contact', [ContactController::class, 'store']);
     Route::get('contact', [ContactController::class, 'index']);
+    Route::put('contact/{id}/edit', [ContactController::class,'update']);
     Route::get('contact/{id}', [ContactController::class,'show']);
     Route::get('user', [UsersController::class,'user']);
     Route::get('refresh', [UsersController::class,'refreshToken']);
