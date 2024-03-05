@@ -67,7 +67,8 @@ class ContactController extends Controller
             if ($contact) {
                 return response()->json([
                     'status' => 200,
-                    'message' => 'Contact created successfully'
+                    'message' => 'Contact created successfully',
+                    'id' => $contact->id,
                 ]);
             } else {
                 return response()->json([
