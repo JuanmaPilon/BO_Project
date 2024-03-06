@@ -2,29 +2,29 @@
   <div>
     <form @submit.prevent="saveChanges">
       <div class="contactInfoCard grid grid-cols-2 gap-3">
-        <div class="contactBox">
-          <label for="name">Name:</label>
-          <input v-model="editedContact.name" id="name" />
+        <div class="contactBox contactMain">
+          <label for="name contactMain contactMain">Name</label>
+          <input class="inputBox contactSub " v-model="editedContact.name" id="name" />
         </div>
-        <div class="contactBox ml-auto">
-          <label for="address">Address:</label>
-          <input v-model="editedContact.adress" id="adress" />
+        <div class="contactBox contactMain ml-auto">
+          <label for="adress contactMain">Address</label>
+          <input class="inputBox contactSub" v-model="editedContact.adress" id="adress" />
         </div>
-        <div class="contactBox">
-          <label for="position">Title:</label>
-          <input v-model="editedContact.position" id="position" />
+        <div class="contactBox contactMain">
+          <label for="position contactMain">Title</label>
+          <input class="inputBox contactSub" v-model="editedContact.position" id="position" />
         </div>
-        <div class="contactBox ml-auto">
-          <label for="phone">Phone:</label>
-          <input v-model="editedContact.number" id="phone" />
+        <div class="contactBox contactMain ml-auto">
+          <label for="phone contactMain">Phone</label>
+          <input class="inputBox contactSub" v-model="editedContact.number" id="phone" />
         </div>
-        <div class="contactBox">
-          <label for="image">Profile Picture:</label>
-          <input v-model="editedContact.image" id="image" />
+        <div class="contactBox contactMain">
+          <label for="image contactMain">Profile Picture</label>
+          <input class="inputBox contactSub" v-model="editedContact.image" id="image" />
         </div>
-        <div class="contactBox ml-auto">
-          <label for="email">Email:</label>
-          <input v-model="editedContact.email" id="email" />
+        <div class="contactBox contactMain ml-auto">
+          <label for="email contactMain">Email</label>
+          <input class="inputBox contactSub" v-model="editedContact.email" id="email" />
         </div>
       </div>
       <button type="submit">Save</button>
