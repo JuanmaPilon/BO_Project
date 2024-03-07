@@ -15,5 +15,8 @@ export const useAuthStore = defineStore({
     clearToken() {
       this.token = null;
     },
+    logout() {
+      this.clearToken();
+    },
   },
 });

@@ -62,11 +62,11 @@ export default {
     },
     schema: yup.object({
     name: yup.string().required().min(3),
-    position: yup.string().required().min(3),
+    position: yup.string().required().min(2),
     email: yup.string().email().required(),
     number: yup.number().required().typeError('must be a number'),
     adress: yup.string().required(),
-    image: yup.string().url()
+    image: yup.string().url(),
 }),
     };
   },

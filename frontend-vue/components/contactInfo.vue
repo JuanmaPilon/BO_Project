@@ -18,7 +18,7 @@
     </div>
     <div class="contactBox">
       <p class="contactMain">Profile Picture</p>
-      <p class="inputBox contactSub">{{ contact.image }}</p>
+      <p class="inputBox contactSub">{{ contact.image ? contact.image : 'None' }}</p>
     </div>
     <div class="contactBox ml-auto">
       <p class="contactMain">Email</p>

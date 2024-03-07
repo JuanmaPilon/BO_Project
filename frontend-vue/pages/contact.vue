@@ -1,4 +1,10 @@
 <template>
+    <div>
+    <button class="backButton backButtonMd" @click="logout">
+      <i class="fas fa-arrow-left fa-lg"></i>
+      <span class="contactSub">Logout</span>
+    </button>
+    </div>
   <div>
     <header class="text-left ml-4 mt-4">
       <h2 class="p-5 text-3xl font-black">Contacts</h2>
@@ -89,6 +95,10 @@ export default {
     },
     handleContactAdded(contact) {
       this.contacts.push(contact);
+    },
+    logout() {
+      useAuthStore().logout();
+      this.$router.push('/');
     }
   },
   mounted() {
