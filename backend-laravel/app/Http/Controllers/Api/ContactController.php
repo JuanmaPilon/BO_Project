@@ -45,7 +45,7 @@ class ContactController extends Controller
             'adress' => 'required|string|max:191',
             'email' => 'required|email|max:191',
             'number' => 'required|string|max:191',
-            'image' => 'url|max:2048',
+            'image' => 'nullable|url|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -126,7 +126,7 @@ public function update(Request $request, $id){
             'adress' => 'required|string|max:191',
             'email' => 'required|email|max:191',
             'number' => 'required|string|max:191',
-            'image' => 'url|max:2048',
+            'image' => 'nullable|url|max:2048',
         ]);
 
         if ($validator->fails()) {
