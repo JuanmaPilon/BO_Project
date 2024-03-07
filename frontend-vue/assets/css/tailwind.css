@@ -17,7 +17,7 @@ body {
         @apply w-full px-3 py-2 border rounded-md bg-fuchsia-100;
     }
     .inputText {
-        @apply block text-black text-xl font-bold mb-2;
+        @apply block text-black text-xl font-bold mb-2 overflow-hidden;
     }
     .btn {
         @apply font-roboto font-semibold text-xl bg-violet-400 text-white px-28 py-4 rounded-full;
@@ -41,7 +41,7 @@ body {
         @apply w-full lg:w-64 mb-3;
     }
     .contactSub {
-        @apply text-sm text-gray-400 mb-2;
+        @apply text-sm text-gray-400 mb-2 overflow-hidden;
     }
     .backButton {
         @apply contactSub absolute -top-1 px-4 py-4 flex items-center space-x-2 font-semibold;
