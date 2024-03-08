@@ -1,5 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  components: [
+    'vue-google-autocomplete',
+  ],
   devtools: { enabled: true },
   css: [
     '@/assets/css/tailwind.css'
