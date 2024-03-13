@@ -29,7 +29,7 @@
       </div>
       <div v-else-if="filteredContacts.length === 0" class="text-center col-span-full">
         <div class="flex items-center justify-center">
-          <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-96" />
+          <img src="../static/emptyContact.png" alt="emptyContactsImg" class="mb-4 max-w-40 md:mb-4 md:max-w-80" />
         </div>
         <p class="text-2xl font-semibold font-roboto">No contacts found</p>
       </div>

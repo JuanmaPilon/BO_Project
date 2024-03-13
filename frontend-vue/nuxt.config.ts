@@ -1,8 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  components: [
-    'vue-google-autocomplete',
-  ],
   devtools: { enabled: true },
   css: [
     '@/assets/css/tailwind.css'
@@ -14,6 +11,12 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
+      script: [
+        {
+          src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCDEseTdq-qHy5r79P_q7wSUUCCgYmbRQU&libraries=places',
+          defer: true,
+        },
+      ],
       title: 'Build Online Challenge',
       meta: [
         { name: 'viewport' , content: 'width=device-width, initial-scale=1'}

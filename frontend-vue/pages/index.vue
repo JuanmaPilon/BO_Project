@@ -4,7 +4,7 @@
       <h1 class="font-extrabold text-5xl text-center mb-12">Welcome!</h1>
       <div class="w-full max-w-md">
         <form @submit.prevent="login">
-          <div class="mb-4">
+          <div class="mb-4 mx-4">
             <label for="email" class="inputText">Email</label>
             <input
               v-model="email"
@@ -15,7 +15,7 @@
               placeholder="john@doe.com"
             />
           </div>
-          <div>
+          <div class="mb-4 mx-4">
             <label for="password" class="inputText">Password</label>
             <input
               v-model="password"

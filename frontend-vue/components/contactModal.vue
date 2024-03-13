@@ -15,7 +15,7 @@
         </div>
         <div class="mb-4">
           <label for="adress" class="labelForm">Address:</label>
-          <Field v-model="contact.adress" type="text" id="adress" name="adress" class="inputBox" />
+         <Field v-model="contact.adress" type="text" id="adress" name="adress" class="inputBox" />
           <ErrorMessage name="adress" />
         </div>
         <div class="mb-4">
@@ -37,7 +37,10 @@
       </Form>
     </div>
     <div class="close absolute top-4 right-4 cursor-pointer" @click="$emit('close-modal')">
-      <button class="btn-close w-10 h-10">X</button>
+      <button class="btn-close w-10 h-10">
+    <i class="fas fa-times fa-2x"></i>
+</button>
+
     </div>
   </div>
 </template>
@@ -112,9 +115,23 @@ export default {
       const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
       if (!regex.test(value)) {
         return 'This field must be a valid email';
-      } return true
+      } return true;
+    },
+    handlePlaceChanged(place) {
+      this.contact.adress = place.formatted_address;
     },
   },
+  mounted() {
+    const autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('adress'), {
+        types: ['geocode']
+      }
+    );
+    autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+      this.handlePlaceChanged(place);
+    });
+  }
 };
 </script>
 
