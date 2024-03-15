@@ -9,9 +9,6 @@
         <button v-if="!editing" class="editButtonMd" @click="editingContact">
           EDIT
         </button>
-        <button v-if="editing" class="editButtonMd" @click="saveChanges">
-          SAVE
-        </button>
         <img
           v-if="!loadingContactDetails && contact.image && !imageError"
           :src="contact.image"

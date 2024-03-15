@@ -76,4 +76,7 @@ body {
     .profileHeader {
         @apply -mt-32 relative z-20 mb-16;
     }
+    .saveButton {
+        @apply btn flex justify-center px-10 py-3 mx-auto my-3;
+      }
 }

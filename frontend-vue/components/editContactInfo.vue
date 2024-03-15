@@ -27,7 +27,7 @@
           <input class="inputBox contactSub" v-model="editedContact.email" id="email" />
         </div>
       </div>
-      <button type="submit">Save</button>
+      <button class="saveButton" type="submit">Save</button>
     </form>
   </div>
 </template>
