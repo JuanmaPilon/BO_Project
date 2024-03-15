@@ -1,6 +1,11 @@
 <template>
   <div class="modal-overlay bg-opacity-70 bg-black flex items-center justify-center fixed inset-0">
-    <div class="modal bg-white text-center p-8 rounded-lg">
+    <div class="modal bg-white text-center p-8 rounded-lg relative">
+      <div class="close absolute top-4 right-4 cursor-pointer" @click="$emit('close-modal')">
+        <button class="btn-close w-10 h-10 -mx-4 -my-4">
+          <i class="fas fa-times fa-2x"></i>
+        </button>
+      </div>
       <h6 class="font-bold text-2xl mb-4">Enter contact details:</h6>
       <Form :validation-schema="schema" @submit="submitContact">
         <div class="mb-4">
@@ -35,12 +40,6 @@
          </div>
         <button class="inputBox w-20">Submit</button>
       </Form>
-    </div>
-    <div class="close absolute top-4 right-4 cursor-pointer" @click="$emit('close-modal')">
-      <button class="btn-close w-10 h-10">
-    <i class="fas fa-times fa-2x"></i>
-</button>
-
     </div>
   </div>
 </template>

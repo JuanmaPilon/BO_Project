@@ -5,7 +5,7 @@
       <span class="contactSub">Back</span>
     </button>
     <div class="relative">
-      <div class="grayBgSqr grayBgSqrMd">
+      <div v-bind:class="{ 'invisible md:visible': editing }" class="grayBgSqr grayBgSqrMd">
         <button v-if="!editing" class="editButtonMd" @click="editingContact">
           EDIT
         </button>
@@ -25,8 +25,8 @@
         />
       </div>
       <div class="profileHeader profileHeaderMd">
-        <h1 class="inputText">{{ contact.name }}</h1>
-        <p class="labelForm mb-5">{{ contact.position }}</p>
+        <h1 v-bind:class="{ 'invisible md:visible': editing }" class="inputText">{{ contact.name }}</h1>
+        <p v-bind:class="{ 'invisible md:visible' : editing}" class="labelForm mb-5">{{ contact.position }}</p>
       </div>
       <div class="contactInfoContainer mx-20">
         <contactInfo v-if="!editing" :contact="contact" />

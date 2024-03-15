@@ -1,5 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  runtimeConfig: {
+    googleApiKey: process.env.GOOGLE_API_KEY
+  },
   devtools: { enabled: true },
   css: [
     '@/assets/css/tailwind.css'
@@ -13,7 +16,7 @@ export default defineNuxtConfig({
     head: {
       script: [
         {
-          src: 'https://maps.googleapis.com/maps/api/js?key=GOOGLE_API_KEY&libraries=places',
+          src: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`,
           defer: true,
         },
       ],
