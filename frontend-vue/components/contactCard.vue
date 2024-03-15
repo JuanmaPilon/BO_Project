@@ -13,9 +13,9 @@
         :alt="contact.name"
         class="profileImageCard"
       />
-      <div class="contactInfo flex-grow">
-        <p class="contactName text-lg font-bold mb-1">{{ contact.name }}</p>
-        <p class="description text-sm text-gray-400 mb-2">{{ contact.position }}</p>
+      <div class="contactInfo flex-grow truncate">
+        <p class="contactName text-lg font-bold mb-1 truncate">{{ contact.name }}</p>
+        <p class="description text-sm text-gray-400 mb-2 truncate">{{ contact.position }}</p>
         <i class="fas fa-arrow-right"></i>
       </div>
     </div>

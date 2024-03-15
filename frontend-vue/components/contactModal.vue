@@ -38,7 +38,7 @@
          <Field v-model="contact.image" type="url" id="image" name="image" class="inputBox" />
          <ErrorMessage name="image" />
          </div>
-        <button class="inputBox w-20">Submit</button>
+        <button :disabled="isSubmitting" class="inputBox w-20">Submit</button>
       </Form>
     </div>
   </div>
@@ -70,6 +70,7 @@ export default {
     adress: yup.string().required(),
     image: yup.string().url(),
 }),
+  isSubmitting: false,
     };
   },
   components: {
@@ -99,6 +100,7 @@ export default {
       useAuthStore().setToken(newToken);
     }
     this.$emit('contact-added', { ...this.contact, id: response.data.id });
+    this.resetForm();
   } catch (error) {
     console.error('Error submitting form:', error);
     alert('Error submitting form. Try again.');
@@ -118,6 +120,16 @@ export default {
     },
     handlePlaceChanged(place) {
       this.contact.adress = place.formatted_address;
+    },
+    resetForm() {
+      this.contact = {
+        name: '',
+        position: '',
+        adress: '',
+        email: '',
+        number: '',
+        image: '',
+      };
     },
   },
   mounted() {

@@ -13,6 +13,7 @@
               name="email"
               class="inputBox"
               placeholder="john@doe.com"
+              @keyup.enter="login"
             />
           </div>
           <div class="mb-4 mx-4">
@@ -24,6 +25,7 @@
               name="password"
               class="inputBox"
               placeholder="**********"
+              @keyup.enter="login"
             />
           </div>
         </form>

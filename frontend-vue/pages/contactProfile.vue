@@ -4,7 +4,7 @@
       <i class="fas fa-arrow-left fa-lg"></i>
       <span class="contactSub">Back</span>
     </button>
-    <div class="relative">
+    <div v-bind:class="{ 'mt-[-250px] overflow-auto z-10 md:mt-0': editing}" class="relative">
       <div v-bind:class="{ 'invisible md:visible': editing }" class="grayBgSqr grayBgSqrMd">
         <button v-if="!editing" class="editButtonMd" @click="editingContact">
           EDIT

@@ -8,7 +8,7 @@
         </div>
         <div class="contactBox contactMain ml-auto">
           <label for="adress contactMain">Address</label>
-          <input class="inputBox contactSub" v-model="editedContact.adress" id="adress" />
+        <input class="inputBox contactSub" v-model="editedContact.adress" id="adress" ref="adressInput"/>
         </div>
         <div class="contactBox contactMain">
           <label for="position contactMain">Title</label>
@@ -27,7 +27,10 @@
           <input class="inputBox contactSub" v-model="editedContact.email" id="email" />
         </div>
       </div>
-      <button class="saveButton" type="submit">Save</button>
+      <div class="flex mt-4 justify-center">
+      <button class="saveButton mx-2" @click="cancelEdit">Cancel</button>
+      <button class="saveButton mx-2" type="submit">Save</button>
+      </div>
     </form>
   </div>
 </template>
@@ -50,9 +53,30 @@
       const saveChanges = () => {
         emit('saveChanges', editedContact.value);
       };
+      const cancelEdit = () => {
+      editedContact.value = { ...props.contact };
+    };
+    const handlePlaceChanged = (place) => {
+      editedContact.value.adress = place.formatted_address;
+    };
+    const initAutocomplete = () => {
+      const autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('adress'), {
+          types: ['geocode']
+        }
+      );
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        handlePlaceChanged(place);
+      });
+    };
+    onMounted(() => {
+      initAutocomplete();
+    });
       return {
         editedContact,
         saveChanges,
+        cancelEdit,
       };
     },
   };
@@ -60,4 +84,3 @@
   
 <style>
 </style>
-  
