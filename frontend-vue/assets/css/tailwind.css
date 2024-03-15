@@ -65,7 +65,7 @@ body {
         @apply grayBgSqr md:bg-gray-200 md:mx-20 md:my-10 md:h-64;
     }
     .editButton {
-        @apply flex justify-center items-center btn bottom-[20px] absolute px-28 py-3 visible left-1/2 transform -translate-x-1/2 md:invisible mb-5;
+        @apply flex justify-center items-center btn px-28 py-3 visible md:invisible mx-auto my-5;
     }
     .editButtonMd {
         @apply btn absolute right-5 px-10 py-3 md:block invisible md:visible;

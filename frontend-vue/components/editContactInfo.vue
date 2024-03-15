@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="saveChanges">
-      <div class="contactInfoCard grid grid-cols-2 gap-3">
+      <div class="contactInfoCard grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-3">
         <div class="contactBox contactMain">
           <label for="name contactMain contactMain">Name</label>
           <input class="inputBox contactSub " v-model="editedContact.name" id="name" />

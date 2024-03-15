@@ -1,10 +1,10 @@
 <template>
-  <div class="contactInfoCard grid grid-cols-2 gap-3">
+  <div class="contactInfoCard grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-3">
     <div class="contactBox">
       <p class="contactMain">Name</p>
       <p class="inputBox contactSub">{{ contact.name }}</p>
     </div>
-    <div class="contactBox ml-auto">
+    <div class="contactBox">
       <p class="contactMain">Address</p>
       <p class="inputBox contactSub">{{ contact.adress }}</p>
     </div>
@@ -12,7 +12,7 @@
       <p class="contactMain">Title</p>
       <p class="inputBox contactSub">{{ contact.position }}</p>
     </div>
-    <div class="contactBox ml-auto">
+    <div class="contactBox">
       <p class="contactMain">Phone</p>
       <p class="inputBox contactSub">{{ contact.number }}</p>
     </div>
@@ -20,7 +20,7 @@
       <p class="contactMain">Profile Picture</p>
       <p class="inputBox contactSub">{{ contact.image ? contact.image : 'None' }}</p>
     </div>
-    <div class="contactBox ml-auto">
+    <div class="contactBox">
       <p class="contactMain">Email</p>
       <p class="inputBox contactSub">{{ contact.email }}</p>
     </div>

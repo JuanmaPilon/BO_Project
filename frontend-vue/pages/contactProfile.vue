@@ -28,7 +28,7 @@
         <h1 v-bind:class="{ 'invisible md:visible': editing }" class="inputText">{{ contact.name }}</h1>
         <p v-bind:class="{ 'invisible md:visible' : editing}" class="labelForm mb-5">{{ contact.position }}</p>
       </div>
-      <div class="contactInfoContainer mx-20">
+      <div class="contactInfoContainer md:mx-20">
         <contactInfo v-if="!editing" :contact="contact" />
         <editContactInfo
           v-if="editing"
